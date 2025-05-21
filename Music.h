@@ -10,6 +10,8 @@ private:
     string style;
 public:
     Music(string,string,int,string);
+
+    Music(const Music&);
     //    void setInfo(string,string,int,string);
 
     string getName();

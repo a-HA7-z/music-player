@@ -10,6 +10,13 @@ publishYear = year;
 style = type;
 }
 
+Music::Music(const Music & other)
+{
+    name = other.name;
+    singer = other.singer;
+    publishYear = other.publishYear;
+    style = other.style;
+}
 //void Music::setInfo(string MusicName,string artist,int year,string type)
 //{
 //    name = MusicName;
