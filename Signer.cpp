@@ -17,3 +17,9 @@ void Singer::setName(string fullName) {
 void Singer::setAlbumsNumber(int num) {
     number_of_Albums = num;
 }
+
+void Singer::addMusic(const Music& newMusic) {
+    musicList.push_back(newMusic);
+
+    number_of_Musics++;
+}

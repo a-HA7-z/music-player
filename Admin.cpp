@@ -1,4 +1,4 @@
 #include "Admin.h"
 using namespace std;
 
-Admin::Admin() : User("un","ps") {}
+Admin::Admin(string uName,string pass) : User(uName,pass) {}

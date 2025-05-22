@@ -6,5 +6,5 @@ class Admin : public User
 private:
 
 public:
-    Admin();
+    Admin(string,string);
 };
