@@ -6,9 +6,10 @@ class User{
 private:
     string username;
     string password;
-public:
+protected:
     User();
     User(string ,string );
+public:
     void setUsername(string );
     void setPassword(string );
     string getUsername();

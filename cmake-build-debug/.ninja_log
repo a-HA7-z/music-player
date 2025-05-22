@@ -1,0 +1,10 @@
+# ninja log v6
+2	865	7696052409840892	CMakeFiles/music_player.dir/main.cpp.obj	41b8cad5a8903ef
+1	795	7696058351754068	build.ninja	a595dc8ff45d02d3
+22	473	7696058353141139	CMakeFiles/music_player.dir/Admin.cpp.obj	b463974500f1f822
+26	488	7696058353171137	CMakeFiles/music_player.dir/Member.cpp.obj	fc276c39af9dd437
+18	546	7696058353091129	CMakeFiles/music_player.dir/User.cpp.obj	320b71a67c8ab798
+38	571	7696058353289951	CMakeFiles/music_player.dir/PlayList.cpp.obj	3ab7a5604af820a6
+29	588	7696058353216171	CMakeFiles/music_player.dir/Singer.cpp.obj	59ad319d0330204b
+33	661	7696058353248821	CMakeFiles/music_player.dir/Music.cpp.obj	aceaa4530123569c
+661	790	7696058359520944	music_player.exe	df39fc22d8dd6415
