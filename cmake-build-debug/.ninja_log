@@ -8,3 +8,14 @@
 29	588	7696058353216171	CMakeFiles/music_player.dir/Singer.cpp.obj	59ad319d0330204b
 33	661	7696058353248821	CMakeFiles/music_player.dir/Music.cpp.obj	aceaa4530123569c
 661	790	7696058359520944	music_player.exe	df39fc22d8dd6415
+16	468	7696287118462282	CMakeFiles/music_player.dir/Member.cpp.obj	fc276c39af9dd437
+8	494	7696287118381493	CMakeFiles/music_player.dir/User.cpp.obj	320b71a67c8ab798
+26	558	7696287118559423	CMakeFiles/music_player.dir/PlayList.cpp.obj	3ab7a5604af820a6
+12	579	7696287118422280	CMakeFiles/music_player.dir/Admin.cpp.obj	b463974500f1f822
+20	613	7696287118503633	CMakeFiles/music_player.dir/Singer.cpp.obj	59ad319d0330204b
+4	701	7696287118339559	CMakeFiles/music_player.dir/main.cpp.obj	41b8cad5a8903ef
+701	844	7696287125306054	music_player.exe	df39fc22d8dd6415
+15	560	7696296489784240	CMakeFiles/music_player.dir/Singer.cpp.obj	59ad319d0330204b
+10	566	7696296489728296	CMakeFiles/music_player.dir/Admin.cpp.obj	b463974500f1f822
+4	632	7696296489662822	CMakeFiles/music_player.dir/main.cpp.obj	41b8cad5a8903ef
+632	754	7696296495949172	music_player.exe	df39fc22d8dd6415

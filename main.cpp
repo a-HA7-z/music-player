@@ -1,5 +1,5 @@
 #include <iostream>
-#include "User.h"
+#include <vector>
 #include "Admin.h"
 #include "Member.h"
 #include "Singer.h"
@@ -13,6 +13,7 @@ int main() {
     Admin admin2("ad2min","wsxedc");
 
     PlayList allMusic("All Music");
+    vector<Singer> singers;
 
     int role;
     while(true){

@@ -5,7 +5,7 @@ Singer::Singer()
 {
     number_of_Musics = 0;
 }
-Singer::Singer(string fullName,int AlbumsNumber) : name(fullName),number_of_Albums(AlbumsNumber)
+Singer::Singer(string fullName) : name(fullName),number_of_Albums(0)
 {
     number_of_Musics = 0;
 }
@@ -16,6 +16,10 @@ void Singer::setName(string fullName) {
 
 void Singer::setAlbumsNumber(int num) {
     number_of_Albums = num;
+}
+
+string Singer::getName() {
+    return name;
 }
 
 void Singer::addMusic(const Music& newMusic) {

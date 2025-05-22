@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <vector>
 #include "Music.h"
@@ -12,10 +13,12 @@ private:
     vector<Music> musicList;
 public:
     Singer();
-    Singer(string,int);
+    Singer(string);
 
     void setName(string);
     void setAlbumsNumber(int);
+
+    string getName();
 
     void addMusic(const Music&);
 };
