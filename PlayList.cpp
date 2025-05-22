@@ -7,7 +7,7 @@ string PlayList::getName() {
     return name;
 }
 
-int PlayList::getNumberOfMusic() {
+int PlayList::getNumberOfMusic() const{
     return number_of_Music;
 }
 

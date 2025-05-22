@@ -13,7 +13,7 @@ public:
     PlayList(string);
 
     string getName();
-    int getNumberOfMusic();
+    int getNumberOfMusic() const;
 
     void addMusic(const Music&);
 };
