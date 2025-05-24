@@ -20,4 +20,8 @@ public:
     void addMusicToPlaylist(PlayList&,const Music&);
 
     void deleteMusicFromPlaylist(PlayList&,const Music&);
+
+    void addPlaylist(vector<PlayList>& ,const PlayList&);
+
+    void deletePlaylist(vector<PlayList>& ,const PlayList&);
 };

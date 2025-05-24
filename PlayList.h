@@ -24,5 +24,7 @@ public:
 
     bool checkMusic(const Music& );
 
+    bool operator==(const PlayList& )const;
+
     void show() const;
 };

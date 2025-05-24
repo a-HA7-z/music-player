@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "User.h"
 using namespace std;
 
@@ -30,4 +31,13 @@ void User::addMusicToPlaylist(PlayList& playList, const Music& music) {
 
 void User::deleteMusicFromPlaylist(PlayList& playList,const Music& target) {
     playList.deleteMusic(target);
+}
+
+void User::addPlaylist(vector<PlayList>& playlistArray, const PlayList& newPlaylist) {
+    playlistArray.push_back(newPlaylist);
+}
+
+void User::deletePlaylist(vector<PlayList>& playlistArray,const PlayList& target){
+        auto iter = std::find(playlistArray.begin(),playlistArray.end(),target);
+        playlistArray.erase(iter);
 }

@@ -133,7 +133,64 @@ int main() {
                 }
 
                 if(act == 4)
-                {}
+                {
+                    while(true)
+                    {
+                        cout << "1_All Playlists Info\n2_Add Playlist\n3_Delete Playlist" << endl;
+                        cout << "\n9_Back to menu\n0_Exit" << endl;
+                        int act2;
+
+                        cin >> act2;
+                        cin.ignore();
+
+                        if(act2 == 0){
+                            return 0;
+                        }
+                        if(act2 == 9){
+                            break;
+                        }
+
+                        if(act2 == 1){
+                            cout << "--> All Playlists:" << endl;
+
+                            for(int i = 0;i < officialPlaylists.size(); i++){
+                                cout << i+1 << "_ Playlist title: " << officialPlaylists[i].getName() << "   Number of music: "
+                                     << officialPlaylists[i].getNumberOfMusic() << endl;
+                            }
+                        }
+
+                        if(act2 == 2){
+                            string listName;
+                            cout << "Please enter the name of Playlist" << endl;
+                            getline(cin,listName);
+                            admins[index].addPlaylist(officialPlaylists , PlayList(listName) );
+                        }
+
+                        if(act2 == 3){
+                            cout << "--> All Playlists:" << endl;
+
+                            for(int i = 0;i < officialPlaylists.size(); i++)
+                            {
+                                cout << i+1 << "_ Playlist title: " << officialPlaylists[i].getName() << "   Number of music: "
+                                     << officialPlaylists[i].getNumberOfMusic() << endl;
+                            }
+
+                            cout << "\nChoose a Playlist to deleting:\n(enter the row of target Playlist)" << endl;
+                            int act3;
+
+                            cin >> act3;
+                            cin.ignore();
+
+                            while(act3 < 0 || act3 > officialPlaylists.size()){
+                                cout << "ENTER THE ROW OF TARGET PLAYLIST!" << endl;
+                                cin >> act3;
+                                cin.ignore();
+                            }
+
+                            admins[index].deletePlaylist(officialPlaylists , officialPlaylists[act3-1]);
+                        }
+                    }
+                }
             }
         }
 

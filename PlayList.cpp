@@ -46,3 +46,16 @@ void PlayList::show() const
         musicList[i].showInfo();
     }
 }
+
+bool PlayList::operator==(const PlayList &other) const
+{
+    if(this->name == other.name && this->number_of_Music == other.number_of_Music){
+        for(int i = 0;i < number_of_Music;i++){
+            if (musicList[i] != other.musicList[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
