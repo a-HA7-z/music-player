@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <iostream>
 #include "PlayList.h"
 using namespace std;
 
@@ -43,6 +44,7 @@ bool PlayList::checkMusic(const Music &target) {
 void PlayList::show() const
 {
     for(int i = 0;i < number_of_Music;i++){
+        cout << i+1 << "_ ";
         musicList[i].showInfo();
     }
 }

@@ -37,6 +37,8 @@ int login(vector<T>& usersList)
 }
 
 Music createMusicFromInput() {
+    cout << "\n(Enter music Info)\n" << endl;
+
     string title, artistName,style;
     int year;
 
@@ -151,13 +153,80 @@ int main() {
                         }
 
                         if(act2 == 1){
-                            cout << "--> All Playlists:" << endl;
+                            while(true)
+                            {
+                                cout << "--> All Playlists:" << endl;
 
-                            for(int i = 0;i < officialPlaylists.size(); i++){
-                                cout << i+1 << "_ Playlist title: " << officialPlaylists[i].getName() << "   Number of music: "
-                                     << officialPlaylists[i].getNumberOfMusic() << endl;
+                                for(int i = 0;i < officialPlaylists.size(); i++){
+                                    cout << i+1 << "_ Playlist title: " << officialPlaylists[i].getName() << "   Number of music: "
+                                         << officialPlaylists[i].getNumberOfMusic() << endl;
+                                }
+
+                                cout << "\n--> Do you want to add or delete music in a Playlist??" << endl;
+                                cout << "1_Yes\n2_No" << endl;
+                                int act3;
+                                cin >> act3;
+                                cin.ignore();
+
+                                if(act3 == 1)
+                                {
+                                    cout << "Choose a Playlist to changing:\n(enter the row of target Playlist)" << endl;
+                                    int act4;
+                                    cin >> act4;
+                                    cin.ignore();
+
+                                    while(act4 < 0 || act4 > officialPlaylists.size()){
+                                        cout << "ENTER THE ROW OF TARGET PLAYLIST!" << endl;
+                                        cin >> act4;
+                                        cin.ignore();
+                                    }
+
+                                    PlayList& targetPlaylist = officialPlaylists[act4-1];
+
+                                    while(true)
+                                    {
+                                        cout << targetPlaylist.getName() << " music:\n" << endl;
+
+                                        targetPlaylist.show();
+
+                                        cout << "\n1_Add music\n2_Delete music\n3_Change another Playlist" << endl;
+                                        cout << "\n9_Back to menu" << endl;
+                                        int act5;
+                                        cin >> act5;
+                                        cin.ignore();
+
+                                        if(act5 == 3) { break; }
+
+                                        if(act5 == 9) {
+                                            act3 = 2;
+                                            break;
+                                        }
+
+                                        if(act5 == 1){
+                                            cout << "--> All music:" << endl;
+                                            allMusic.show();
+
+                                            Music targetMusic = createMusicFromInput();
+
+                                            bool isHere = allMusic.checkMusic(targetMusic);
+
+                                            while( !isHere )
+                                            {
+                                                cout << "This music is unavailable!" << endl;
+
+                                                targetMusic = createMusicFromInput();
+                                                isHere = allMusic.checkMusic(targetMusic);
+                                            }
+
+                                            admins[index].addMusicToPlaylist(targetPlaylist,targetMusic);
+                                        }
+                                    }
+                                }
+
+                                if(act3 == 2) { break; }
                             }
                         }
+
 
                         if(act2 == 2){
                             string listName;
