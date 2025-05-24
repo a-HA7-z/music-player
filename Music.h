@@ -22,5 +22,7 @@ public:
 
     bool operator==(const Music&) const;
 
+    void showInfo() const;
+
     void playMusic();
 };

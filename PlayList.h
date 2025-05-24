@@ -24,4 +24,5 @@ public:
 
     bool checkMusic(const Music& );
 
+    void show() const;
 };

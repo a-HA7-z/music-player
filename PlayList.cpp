@@ -39,3 +39,10 @@ bool PlayList::checkMusic(const Music &target) {
     }
     return false;
 }
+
+void PlayList::show() const
+{
+    for(int i = 0;i < number_of_Music;i++){
+        musicList[i].showInfo();
+    }
+}
