@@ -11,5 +11,5 @@ private:
 public:
     Admin(string,string);
 
-    static void addMusic(PlayList&, Music&, vector<Singer>&);
+    void addMusic(PlayList&, Music&, vector<Singer>&);
 };
