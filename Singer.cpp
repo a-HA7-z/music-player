@@ -1,8 +1,9 @@
 #include <algorithm>
+#include <iostream>
 #include "Singer.h"
 using namespace std;
 
-Singer::Singer()
+Singer::Singer() : number_of_Albums(0)
 {
     number_of_Musics = 0;
 }
@@ -37,3 +38,21 @@ void Singer::deleteMusic(const Music& target)
 
     number_of_Musics--;
 }
+
+void Singer::addAlbum(const PlayList &newAlbum) {
+    albums.push_back(newAlbum);
+    number_of_Albums++;
+}
+
+void Singer::showMusicList() {
+    for (int i = 0;i < number_of_Musics;i++){
+        musicList[i].showInfo();
+    }
+}
+
+void Singer::ShowBiography() const{
+    cout << "Artist name: " << name << "   Number of Albums: " << number_of_Albums;
+    cout << "   Number of Music: " << number_of_Musics << endl;
+}
+
+

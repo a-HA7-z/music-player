@@ -85,8 +85,8 @@ int main() {
             int index = login(admins);
 
             while(true){
-                cout << "\n1_Add new music\n2_Delete music\n3_See all music\n4_Playlists setting" << endl;
-                cout << "\n9_Log-out\n0_Exit" << endl;
+                cout << "\n1_Add new music\n2_Delete music\n3_See all music\n4_Playlists setting\n";
+                cout << "5_Artists Homepage setting\n" << "\n" << "9_Log-out\n0_Exit" << endl;
                 int act;
                 cin >> act;
                 cin.ignore();
@@ -278,6 +278,11 @@ int main() {
                             admins[index].deletePlaylist(officialPlaylists , officialPlaylists[act3-1]);
                         }
                     }
+                }
+
+                if(act == 5)
+                {
+                    
                 }
             }
         }
