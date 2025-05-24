@@ -94,7 +94,7 @@ int main() {
 
                 if(act == 1){
                     Music newMusic = createMusicFromInput();
-                    admins[index].addMusic(allMusic,newMusic,singers);
+                    admins[index].addNewMusic(allMusic,newMusic,singers);
                     cout << "Music " << newMusic.getName() << "successfully added :)" << endl;
                 }
 
