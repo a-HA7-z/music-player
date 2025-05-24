@@ -15,3 +15,15 @@ void Admin::addMusic(PlayList& playList, Music& mus, vector<Singer>& singers)  {
     singers.push_back(Singer(mus.getName()));
     singers[singers.size()-1].addMusic(mus);
 }
+
+void Admin::deleteMusic(PlayList &list, Music &target,vector<Singer>& singers)
+{
+    list.deleteMusic(target);
+
+    for(int i = 0;i < singers.size();i++){
+        if(singers[i].getName() == target.getName()){
+            singers[i].deleteMusic(target);
+            return;
+        }
+    }
+}

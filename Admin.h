@@ -12,4 +12,6 @@ public:
     Admin(string,string);
 
     void addMusic(PlayList&, Music&, vector<Singer>&);
+
+    void deleteMusic(PlayList&, Music&,vector<Singer>&);
 };

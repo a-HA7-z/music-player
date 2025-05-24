@@ -21,4 +21,6 @@ public:
     string getName();
 
     void addMusic(const Music&);
+
+    void deleteMusic(const Music&);
 };

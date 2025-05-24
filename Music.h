@@ -20,5 +20,7 @@ public:
     int getPublishYear();
     string getStyle();
 
+    bool operator==(const Music&) const;
+
     void playMusic();
 };

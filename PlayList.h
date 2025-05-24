@@ -14,7 +14,14 @@ public:
     PlayList(string);
 
     string getName();
-    int getNumberOfMusic();
+    int getNumberOfMusic() const;
+
+    vector<Music>& getList();
 
     void addMusic(const Music&);
+
+    void deleteMusic(const Music& );
+
+    bool checkMusic(const Music& );
+
 };

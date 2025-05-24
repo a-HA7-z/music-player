@@ -71,7 +71,7 @@ int main() {
 
     int role;
     while(true){
-        cout << "Please select your role:\n" << "1_Admin\n" << "2_Member\n" << "\n0_Exit" << endl;
+        cout << "\nPlease select your role:\n" << "1_Admin\n" << "2_Member\n" << "\n0_Exit" << endl;
         cin >> role;
         cin.ignore();
 
@@ -82,7 +82,7 @@ int main() {
             int index = login(admins);
 
             while(true){
-                cout << "1_Add new music\n 2_\n \n9_Log-out\n 0_Exit" << endl;
+                cout << "1_Add new music\n2_Delete music\n\n9_Log-out\n0_Exit" << endl;
                 int act;
                 cin >> act;
                 cin.ignore();
@@ -94,6 +94,36 @@ int main() {
                     Music newMusic = createMusicFromInput();
                     admins[index].addMusic(allMusic,newMusic,singers);
                 }
+
+                if(act == 2)
+                {
+                    Music targetMusic = createMusicFromInput();
+
+                    bool isHere = allMusic.checkMusic(targetMusic);
+
+                    while( !isHere )
+                    {
+                        cout << "This music is unavailable!" << endl;
+
+                        int act2;
+                        cout << "1_Retry\n2_Return to  main menu\n";
+
+                        cin >> act2;
+                        cin.ignore();
+
+                        if(act2 == 2){
+                            break;
+                        }
+                        if(act2 == 1){
+                            targetMusic = createMusicFromInput();
+                            isHere = allMusic.checkMusic(targetMusic);
+                        }
+                    }
+                    if(isHere){
+                        admins[index].deleteMusic(allMusic,targetMusic,singers);
+                    }
+                }
+
             }
         }
 

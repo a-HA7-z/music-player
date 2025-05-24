@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Singer.h"
 using namespace std;
 
@@ -26,4 +27,13 @@ void Singer::addMusic(const Music& newMusic) {
     musicList.push_back(newMusic);
 
     number_of_Musics++;
+}
+
+void Singer::deleteMusic(const Music& target)
+{
+     auto iter = std::find(musicList.begin(),musicList.end(),target);
+
+    musicList.erase(iter);
+
+    number_of_Musics--;
 }
