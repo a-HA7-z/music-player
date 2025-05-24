@@ -220,6 +220,25 @@ int main() {
 
                                             admins[index].addMusicToPlaylist(targetPlaylist,targetMusic);
                                         }
+
+                                        if(act5 == 2){
+                                            cout << "--> " << targetPlaylist.getName() << " music:" << endl;
+                                            targetPlaylist.show();
+
+                                            Music targetMusic = createMusicFromInput();
+
+                                            bool isHere = allMusic.checkMusic(targetMusic);
+
+                                            while( !isHere )
+                                            {
+                                                cout << "This music is unavailable!" << endl;
+
+                                                targetMusic = createMusicFromInput();
+                                                isHere = allMusic.checkMusic(targetMusic);
+                                            }
+
+                                            admins[index].deleteMusicFromPlaylist(targetPlaylist,targetMusic);
+                                        }
                                     }
                                 }
 
