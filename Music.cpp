@@ -41,6 +41,18 @@ string Music::getStyle() {
     return style;
 }
 
+bool Music::operator==(const Music& other) const {
+    return this->name == other.name && this->singer == other.singer && this->publishYear == other.publishYear;
+}
+
+void Music::showInfo() const
+{
+    cout << "Title: " << name << "  ";
+    cout << "Artist: " << singer << "  ";
+    cout << "Publish year: " << publishYear << "  ";
+    cout << "Style: " << style << endl;
+}
+
 void Music::playMusic()
 {
     cout << ".-..-..-.~<" << name << ">~.-..-..-." << endl;
