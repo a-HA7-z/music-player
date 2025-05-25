@@ -27,3 +27,23 @@ void Admin::deleteMusic(PlayList &list, Music &target,vector<Singer>& singers)
         }
     }
 }
+
+void Admin::updateArtistBio(Singer& artist, const string& newBio) {
+    artist.setBio(newBio);
+}
+
+void Admin::addAlbumToArtist(Singer& artist, const PlayList& newAlbum) {
+    artist.addAlbum(newAlbum);
+}
+
+void Admin::deleteAlbumFromArtist(Singer& artist,int index) {
+    artist.deleteAlbum(index);
+}
+
+void Admin::addMusicToArtistAlbum(Singer& artist,const Music& newMusic, int albumIndex) {
+    artist.addMusicToAlbum(newMusic,albumIndex);
+}
+
+void Admin::deleteMusicFromArtistAlbum(Singer& artist,const Music& targetMusic, int albumIndex) {
+    artist.deleteMusicFromAlbum(targetMusic,albumIndex);
+}

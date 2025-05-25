@@ -12,9 +12,6 @@ Singer::Singer(string fullName) : name(fullName),number_of_Albums(0)
     number_of_Musics = 0;
 }
 
-void Singer::setName(string fullName) {
-    name = fullName;
-}
 
 void Singer::setAlbumsNumber(int num) {
     number_of_Albums = num;
@@ -44,6 +41,10 @@ void Singer::addAlbum(const PlayList &newAlbum) {
     number_of_Albums++;
 }
 
+void Singer::deleteAlbum(int index) {
+    albums.erase(albums.begin() + index);
+}
+
 void Singer::showMusicList() {
     for (int i = 0;i < number_of_Musics;i++){
         musicList[i].showInfo();
@@ -53,6 +54,21 @@ void Singer::showMusicList() {
 void Singer::ShowBiography() const{
     cout << "Artist name: " << name << "   Number of Albums: " << number_of_Albums;
     cout << "   Number of Music: " << number_of_Musics << endl;
+}
+
+void Singer::setBio(const string& newName) {
+    name = newName;
+    for(int i = 0;i < number_of_Musics;i++){
+        musicList[i].setName(newName);
+    }
+}
+
+void Singer::addMusicToAlbum(const Music& albumMusic,int index) {
+    albums[index].addMusic(albumMusic);
+}
+
+void Singer::deleteMusicFromAlbum(const Music& albumMusic,int index) {
+    albums[index].deleteMusic(albumMusic);
 }
 
 

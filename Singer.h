@@ -18,7 +18,6 @@ public:
     Singer();
     Singer(string);
 
-    void setName(string);
     void setAlbumsNumber(int);
 
     string getName();
@@ -28,6 +27,14 @@ public:
     void deleteMusic(const Music&);
 
     void addAlbum(const PlayList&);
+
+    void deleteAlbum(int);
+
+    void setBio(const string&);
+
+    void addMusicToAlbum(const Music& , int);
+
+    void deleteMusicFromAlbum(const Music& , int);
 
     void showMusicList();
 

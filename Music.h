@@ -15,6 +15,8 @@ public:
     Music(const Music&);
     //    void setInfo(string,string,int,string);
 
+    void setName(const string&);
+
     string getName();
     string getSingerName();
     int getPublishYear();

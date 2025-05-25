@@ -58,3 +58,7 @@ void Music::playMusic()
     cout << ".-..-..-.~<" << name << ">~.-..-..-." << endl;
     cout << "Artist ======>" << singer << "<======= Artist" << endl;
 }
+
+void Music::setName(const string &newName) {
+    name = newName;
+}
