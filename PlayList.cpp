@@ -61,3 +61,46 @@ bool PlayList::operator==(const PlayList &other) const
     }
     return false;
 }
+
+void PlayList::play(int mode, int startIndex)
+{
+    playMode = mode;
+    currentIndex = startIndex;
+
+    musicList[currentIndex].playMusic();
+    lastIndex = currentIndex;
+}
+
+void PlayList::next()
+{
+    lastIndex = currentIndex;
+
+    if (playMode == 1)
+    {
+        currentIndex++;
+        if (currentIndex >= musicList.size())
+        {
+            currentIndex = 0;
+        }
+    }
+    else if (playMode == 2)
+    {
+        currentIndex = rand() % musicList.size();
+    }
+
+    musicList[currentIndex].playMusic();
+}
+
+void PlayList::previous()
+{
+    musicList[lastIndex].playMusic();
+}
+
+void PlayList::select(int index)
+{
+    lastIndex = currentIndex;
+
+    currentIndex = index;
+
+    musicList[currentIndex].playMusic();
+}
