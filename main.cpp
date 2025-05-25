@@ -287,19 +287,19 @@ int main() {
                         cout << i+1 << "_ " << singers[i].getName() << endl;
                     }
                     cout << "\nChoose an Artist to Change Page:\n(enter the row of target Artist)\n" << endl;
-                    int act1;
+                    int singerIndex;
 
-                    cin >> act1;
+                    cin >> singerIndex;
                     cin.ignore();
 
-                    while(act1 < 0 || act1 > singers.size()){
+                    while(singerIndex < 0 || singerIndex > singers.size()){
                         cout << "ENTER THE ROW OF TARGET ARTIST!" << endl;
-                        cin >> act1;
+                        cin >> singerIndex;
                         cin.ignore();
                     }
-                    act1--; //Artist index
+                    singerIndex--;
                     while(true){
-                        singers[act1].showHomePage();
+                        singers[singerIndex].showHomePage();
                         cout << "1_Change Artist Name\n2_Add Album\n3_Delete Album\n4_Add Music to an Album\n";
                         cout << "5_Delete Music from an Album\n\n9_Back to menu\n0_Exit" << endl;
                         int act2;
@@ -311,14 +311,70 @@ int main() {
                         if(act2 == 9) { break; }
 
                         if(act2 == 1){
-                            cout << "Enter the new name of Artist " << singers[act1].getName() << endl;
+                            cout << "Enter the new name of Artist " << singers[singerIndex].getName() << endl;
 
                             string newName;
                             getline(cin,newName);
 
-                            admins[index].updateArtistBio(singers[act1],newName);
+                            admins[index].updateArtistBio(singers[singerIndex],newName);
                         }
 
+                        if(act2 == 2){
+                            string newAlbum;
+                            cout << "Please enter the name of Album" << endl;
+                            getline(cin,newAlbum);
+
+                            admins[index].addAlbumToArtist(singers[singerIndex],newAlbum);
+                        }
+
+                        if(act2 == 3){
+                            cout << "\nChoose an Album to deleting:\n(enter the row of target Album)\n" << endl;
+                            int act3;
+
+                            cin >> act3;
+                            cin.ignore();
+
+                            while(act3 < 0 || act3 > singers[singerIndex].getNumberOfAlbums()){
+                                cout << "ENTER THE ROW OF TARGET ALBUM!" << endl;
+                                cin >> act3;
+                                cin.ignore();
+                            }
+                            int albumIndex = act3 - 1;
+
+                            admins[index].deleteAlbumFromArtist(singers[singerIndex],albumIndex);
+                        }
+
+                        if(act2 == 4 || act2 == 5){
+                            cout << "\nChoose an Album to deleting:\n(enter the row of target Album)\n" << endl;
+                            int act3;
+
+                            cin >> act3;
+                            cin.ignore();
+
+                            while(act3 < 0 || act3 > singers[singerIndex].getNumberOfAlbums()){
+                                cout << "ENTER THE ROW OF TARGET ALBUM!" << endl;
+                                cin >> act3;
+                                cin.ignore();
+                            }
+                            int albumIndex = act3 - 1;
+
+                            cout << "\n--> " << singers[singerIndex].getName() << "music:\n" << endl;
+                            singers[singerIndex].showMusicList();
+
+                            if(act2 == 4)
+                            {
+                                Music newMusic = createMusicFromInput();
+
+                                admins[index].addMusicToArtistAlbum(singers[singerIndex],newMusic,albumIndex);
+                            }
+
+                            if(act2 == 5)
+                            {
+                                Music newMusic = createMusicFromInput();
+
+                                admins[index].deleteMusicFromArtistAlbum(singers[singerIndex],newMusic,albumIndex);
+                            }
+                        }
                     }
                 }
             }

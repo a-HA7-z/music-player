@@ -22,6 +22,8 @@ public:
 
     string getName();
 
+    int getNumberOfAlbums()const;
+
     void addMusic(const Music&);
 
     void deleteMusic(const Music&);

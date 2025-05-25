@@ -43,10 +43,12 @@ void Singer::addAlbum(const PlayList &newAlbum) {
 
 void Singer::deleteAlbum(int index) {
     albums.erase(albums.begin() + index);
+    number_of_Albums--;
 }
 
 void Singer::showMusicList() {
     for (int i = 0;i < number_of_Musics;i++){
+        cout << i+1 << "_ ";
         musicList[i].showInfo();
     }
 }
@@ -79,6 +81,10 @@ void Singer::showHomePage() {
             cout << i+1 << "_ " << albums[i].getName() << endl;
         }
     }
+}
+
+int Singer::getNumberOfAlbums() const {
+    return number_of_Albums;
 }
 
 
