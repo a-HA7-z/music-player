@@ -35,4 +35,19 @@ public:
 
     void playSelectedMusicInPlaylist(PlayList&,int);
 
+    void showSavedMusic();
+
+    void showFavoriteMusic();
+
+    void showFavoritePlaylistsInfo();
+
+    void showPersonalPlaylistInfo();
+
+    void showFavoritePlaylistMusics(int);
+
+    void showPersonalPlaylistMusics(int);
+
+    void playInSavedMusic(int);
+
+    void playInFavoriteMusic(int);
 };

@@ -414,36 +414,182 @@ int main() {
 
         if(role == 2) //Member
         {
-            while(true)
-            {
-                cout << "1_Sign-up\n2_Log-in\n\n9_Log-out\n0_Exit" << endl;
-                int act;
+            cout << "1_Sign-up\n2_Log-in\n\n9_Log-out\n0_Exit" << endl;
+            int act;
 
-                cin >> act;
-                cin.ignore();
+            cin >> act;
+            cin.ignore();
 
-                if(act == 0) { return 0; }
+            if(act == 0) { return 0; }
 
-                if(act <= 2)
-                {
-                    if(act == 1){
-                        signUp(members);
-                    }
+            int memberIndex;
 
-                    if(act == 2){
-                        if(members.empty()){
-                            cout << "Please sign-up first!" << endl;
-                            break;
-                        }
-                        login(members);
-                    }
-
-                    cout << "<---WELCOME--->" << endl;
-                }
-
-                if(act == 9) { break; }
+            if(act == 1){
+                memberIndex = signUp(members);
             }
 
+            if(act == 2){
+                if(members.empty()){
+                    cout << "Please sign-up first!" << endl;
+                    break;
+                }
+                memberIndex = login(members);
+            }
+
+            if(act == 1 || act == 2){
+                cout << "\n<---WELCOME--->\n" << endl;
+
+                while(true){
+                    cout << "1_See your library\n2_See all Musics\n3_See all Playlists\n4_See Artists Homepage\n";
+                    cout << "9_Log-out\n0_Exit" << endl;
+                    int act1;
+
+                    cin >> act1;
+                    cin.ignore();
+
+                    if(act1 == 0) { return 0; }
+                    if(act1 == 9) { break; }
+
+                    if(act1 == 1){
+                        while(true){
+                            cout << "1_Saved Musics\n2_Favorite Musics\n3_Favorite Playlists\n4_Personal Playlists\n";
+                            cout << "9_Back to main menu\n0_Exit" << endl;
+                            int act2;
+
+                            cin >> act2;
+                            cin.ignore();
+
+                            if(act2 == 0) { return 0; }
+                            if(act2 == 9) { break; }
+
+                            if(act2 == 1){
+                                while(true){
+                                    cout << "--> Saved musics:" << endl;
+
+                                    members[memberIndex].showSavedMusic();
+
+                                    cout << "\n1_Play a music\n2_Delete a music from list\n\n0_Back" << endl;
+                                    int act3;
+
+                                    cin >> act3;
+                                    cin.ignore();
+
+                                    if(act3 == 0) { break; }
+
+                                    if(act3 == 1){
+                                        cout << "\nEnter the row of target music to PLAY" << endl;
+                                        int musicIndex;
+
+                                        cin>> musicIndex;
+                                        cin.ignore();
+
+                                        members[memberIndex].playInSavedMusic(musicIndex-1);
+                                    }
+
+                                    if(act3 == 2){
+                                        Music targetMusic = createMusicFromInput();
+
+                                        members[memberIndex].deleteSavedMusic(targetMusic);
+                                    }
+                                }
+                            }
+
+                            if(act2 == 2){
+                                while(true) {
+                                    cout << "--> Favorite musics:" << endl;
+
+                                    members[memberIndex].showFavoriteMusic();
+
+                                    cout << "\n1_Play a music\n2_Delete a music from list\n\n0_Back" << endl;
+                                    int act3;
+
+                                    cin >> act3;
+                                    cin.ignore();
+
+                                    if (act3 == 0) { break; }
+
+                                    if (act3 == 1) {
+                                        cout << "\nEnter the row of target music to PLAY" << endl;
+                                        int musicIndex;
+
+                                        cin >> musicIndex;
+                                        cin.ignore();
+
+                                        members[memberIndex].playInFavoriteMusic(musicIndex - 1);
+                                    }
+
+                                    if (act3 == 2) {
+                                        Music targetMusic = createMusicFromInput();
+
+                                        members[memberIndex].deleteFavoriteMusic(targetMusic);
+                                    }
+                                }
+                            }
+
+                            if(act2 == 3){
+                                while(true){
+                                    cout << "\nFavorite playlists Info:\n" << endl;
+
+                                    members[memberIndex].showFavoritePlaylistsInfo();
+
+                                    cout << "1_Select a playlist to see music\n2_Delete a playlist from the list\n\n0_Back" << endl;
+                                    int act3;
+
+                                    cin >> act3;
+                                    cin.ignore();
+
+                                    if(act3 == 0) { break; }
+
+                                    if(act3 == 1){
+                                        cout << "Enter the row of target playlist to see MUSIC" << endl;
+                                        int playlistIndex;
+
+                                        cin >> playlistIndex;
+                                        cin.ignore();
+
+                                        members[memberIndex].showFavoritePlaylistMusics(playlistIndex);
+                                    }
+
+//                                    if(act3 == 2){
+//                                        cout << "Enter the row of target playlist to DELETE" << endl;
+//                                        int playlistIndex;
+//
+//                                        cin >> playlistIndex;
+//                                        cin.ignore();
+//
+//
+//                                    }
+                                }
+                            }
+                            if(act2 == 4){
+                                while(true){
+                                    cout << "\nPersonal playlists Info:\n" << endl;
+
+                                    members[memberIndex].showPersonalPlaylistInfo();
+
+                                    cout << "1_Select a playlist to see music\n\n0_Back" << endl;
+                                    int act3;
+
+                                    cin >> act3;
+                                    cin.ignore();
+
+                                    if(act3 == 0) { break; }
+
+                                    if(act3 == 1){
+                                        cout << "Enter the row of target playlist to see MUSIC" << endl;
+                                        int playlistIndex;
+
+                                        cin >> playlistIndex;
+                                        cin.ignore();
+
+                                        members[memberIndex].showFavoritePlaylistMusics(playlistIndex);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if(role == 0){

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Member.h"
 using namespace std;
 
@@ -61,4 +62,48 @@ void Member::playPreviousInPlaylist(PlayList & playList) {
 
 void Member::playSelectedMusicInPlaylist(PlayList& playList,int index) {
     playList.select(index);
+}
+
+void Member::showSavedMusic() {
+    for(int i = 0; i < savedMusic.size();i++){
+        cout << i+1 << "_ ";
+        savedMusic[i].showInfo();
+    }
+}
+
+void Member::showFavoriteMusic(){
+    for(int i = 0; i < favoriteMusic.size();i++){
+        cout << i+1 << "_ ";
+        favoriteMusic[i].showInfo();
+    }
+}
+
+void Member::playInSavedMusic(int index) {
+    savedMusic[index].playMusic();
+}
+
+void Member::playInFavoriteMusic(int index) {
+    favoriteMusic[index].playMusic();
+}
+
+void Member::showFavoritePlaylistsInfo() {
+    for(int i = 0;i < favoritePlaylists.size();i++){
+        cout << i+1 << "_ ";
+        cout << favoritePlaylists[i].getName() << "  Number of Musics: " << favoritePlaylists[i].getNumberOfMusic() << endl;
+    }
+}
+
+void Member::showPersonalPlaylistInfo() {
+    for(int i = 0;i < personalPlaylists.size();i++){
+        cout << i+1 << "_ ";
+        cout << personalPlaylists[i].getName() << "  Number of Musics: " << personalPlaylists[i].getNumberOfMusic() << endl;
+    }
+}
+
+void Member::showFavoritePlaylistMusics(int playlistIndex) {
+    favoritePlaylists[playlistIndex].show();
+}
+
+void Member::showPersonalPlaylistMusics(int playlistIndex) {
+    personalPlaylists[playlistIndex].show();
 }
