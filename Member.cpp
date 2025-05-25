@@ -46,3 +46,19 @@ void Member::addPersonalPlaylist(const PlayList& playlist) {
 void Member::deletePersonalPlaylist(const PlayList& target) {
     deletePlaylist(personalPlaylists, target);
 }
+
+void Member::playInPlaylist(PlayList &playList,int mode, int firstMusic) {
+    playList.play(mode,firstMusic);
+}
+
+void Member::playNextInPlaylist(PlayList & playList) {
+    playList.next();
+}
+
+void Member::playPreviousInPlaylist(PlayList & playList) {
+    playList.previous();
+}
+
+void Member::playSelectedMusicInPlaylist(PlayList& playList,int index) {
+    playList.select(index);
+}

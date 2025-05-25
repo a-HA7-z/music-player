@@ -10,7 +10,7 @@ class Member : public User
 public:
     Member();
     Member(string ,string );
-
+    
     void addSavedMusic(const Music&);
 
     void deleteSavedMusic(const Music&);
@@ -26,4 +26,13 @@ public:
     void addPersonalPlaylist(const PlayList& playlist);
 
     void deletePersonalPlaylist(const PlayList& target);
+
+    void playInPlaylist(PlayList& ,int ,int );
+
+    void playNextInPlaylist(PlayList&);
+
+    void playPreviousInPlaylist(PlayList&);
+
+    void playSelectedMusicInPlaylist(PlayList&,int);
+
 };

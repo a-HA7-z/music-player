@@ -10,6 +10,10 @@ private:
     string name;
     int number_of_Music;
     vector<Music> musicList;
+
+    int playMode;
+    int currentIndex;
+    int lastIndex;
 public:
     PlayList(string);
 
@@ -27,4 +31,14 @@ public:
     bool operator==(const PlayList& )const;
 
     void show() const;
+
+    void play(int , int );
+
+    void next();
+
+    void previous();
+
+    void select(int);
+
+    void sortMusicList(int feature);
 };

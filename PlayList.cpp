@@ -61,3 +61,80 @@ bool PlayList::operator==(const PlayList &other) const
     }
     return false;
 }
+
+void PlayList::play(int mode, int startIndex)
+{
+    playMode = mode;
+    currentIndex = startIndex;
+
+    musicList[currentIndex].playMusic();
+    lastIndex = currentIndex;
+}
+
+void PlayList::next()
+{
+    lastIndex = currentIndex;
+
+    if (playMode == 1)
+    {
+        currentIndex++;
+        if (currentIndex >= musicList.size())
+        {
+            currentIndex = 0;
+        }
+    }
+    else if (playMode == 2)
+    {
+        currentIndex = rand() % musicList.size();
+    }
+
+    musicList[currentIndex].playMusic();
+}
+
+void PlayList::previous()
+{
+    musicList[lastIndex].playMusic();
+}
+
+void PlayList::select(int index)
+{
+    lastIndex = currentIndex;
+
+    currentIndex = index;
+
+    musicList[currentIndex].playMusic();
+}
+
+void PlayList::sortMusicList(int feature) {
+    int n = musicList.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            bool needSwap = false;
+            switch (feature) {
+                case 1: // by name
+                    if (musicList[j].getName() < musicList[i].getName())
+                        needSwap = true;
+                    break;
+                case 2: // by Artist name
+                    if (musicList[j].getSingerName() < musicList[i].getSingerName())
+                        needSwap = true;
+                    break;
+                case 3: // by Publish year
+                    if (musicList[j].getPublishYear() < musicList[i].getPublishYear())
+                        needSwap = true;
+                    break;
+                case 4: // by style
+                    if (musicList[j].getStyle() < musicList[i].getStyle())
+                        needSwap = true;
+                    break;
+                default:
+                    break;
+            }
+            if (needSwap){
+                Music temp = musicList[i];
+                musicList[i] = musicList[j];
+                musicList[j] = temp;
+            }
+        }
+    }
+}
