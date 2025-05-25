@@ -170,7 +170,7 @@ int main() {
 
                                 if(act3 == 1)
                                 {
-                                    cout << "Choose a Playlist to changing:\n(enter the row of target Playlist)" << endl;
+                                    cout << "Choose a Playlist to changing:\n(enter the row of target Playlist)\n" << endl;
                                     int act4;
                                     cin >> act4;
                                     cin.ignore();
@@ -263,7 +263,7 @@ int main() {
                                      << officialPlaylists[i].getNumberOfMusic() << endl;
                             }
 
-                            cout << "\nChoose a Playlist to deleting:\n(enter the row of target Playlist)" << endl;
+                            cout << "\nChoose a Playlist to deleting:\n(enter the row of target Playlist)\n" << endl;
                             int act3;
 
                             cin >> act3;
@@ -282,7 +282,44 @@ int main() {
 
                 if(act == 5)
                 {
-                    
+                    cout << "\n--> All Artists:\n" << endl;
+                    for(int i = 0;i < singers.size();i++){
+                        cout << i+1 << "_ " << singers[i].getName() << endl;
+                    }
+                    cout << "\nChoose an Artist to Change Page:\n(enter the row of target Artist)\n" << endl;
+                    int act1;
+
+                    cin >> act1;
+                    cin.ignore();
+
+                    while(act1 < 0 || act1 > singers.size()){
+                        cout << "ENTER THE ROW OF TARGET ARTIST!" << endl;
+                        cin >> act1;
+                        cin.ignore();
+                    }
+                    act1--; //Artist index
+                    while(true){
+                        singers[act1].showHomePage();
+                        cout << "1_Change Artist Name\n2_Add Album\n3_Delete Album\n4_Add Music to an Album\n";
+                        cout << "5_Delete Music from an Album\n\n9_Back to menu\n0_Exit" << endl;
+                        int act2;
+
+                        cin >> act2;
+                        cin.ignore();
+
+                        if(act2 == 0) { return 0; }
+                        if(act2 == 9) { break; }
+
+                        if(act2 == 1){
+                            cout << "Enter the new name of Artist " << singers[act1].getName() << endl;
+
+                            string newName;
+                            getline(cin,newName);
+
+                            admins[index].updateArtistBio(singers[act1],newName);
+                        }
+
+                    }
                 }
             }
         }

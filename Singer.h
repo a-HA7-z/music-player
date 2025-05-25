@@ -38,5 +38,7 @@ public:
 
     void showMusicList();
 
-    void ShowBiography() const;
+    void showBiography() const;
+
+    void showHomePage();
 };

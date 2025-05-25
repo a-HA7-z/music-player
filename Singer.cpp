@@ -51,7 +51,7 @@ void Singer::showMusicList() {
     }
 }
 
-void Singer::ShowBiography() const{
+void Singer::showBiography() const{
     cout << "Artist name: " << name << "   Number of Albums: " << number_of_Albums;
     cout << "   Number of Music: " << number_of_Musics << endl;
 }
@@ -69,6 +69,16 @@ void Singer::addMusicToAlbum(const Music& albumMusic,int index) {
 
 void Singer::deleteMusicFromAlbum(const Music& albumMusic,int index) {
     albums[index].deleteMusic(albumMusic);
+}
+
+void Singer::showHomePage() {
+    this->showBiography();
+    if(number_of_Albums > 0){
+        cout << "--> Albums:\n" << endl;
+        for(int i = 0;i < number_of_Albums;i++){
+            cout << i+1 << "_ " << albums[i].getName() << endl;
+        }
+    }
 }
 
 
