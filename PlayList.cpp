@@ -104,3 +104,37 @@ void PlayList::select(int index)
 
     musicList[currentIndex].playMusic();
 }
+
+void PlayList::sortMusicList(int feature) {
+    int n = musicList.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            bool needSwap = false;
+            switch (feature) {
+                case 1: // by name
+                    if (musicList[j].getName() < musicList[i].getName())
+                        needSwap = true;
+                    break;
+                case 2: // by Artist name
+                    if (musicList[j].getSingerName() < musicList[i].getSingerName())
+                        needSwap = true;
+                    break;
+                case 3: // by Publish year
+                    if (musicList[j].getPublishYear() < musicList[i].getPublishYear())
+                        needSwap = true;
+                    break;
+                case 4: // by style
+                    if (musicList[j].getStyle() < musicList[i].getStyle())
+                        needSwap = true;
+                    break;
+                default:
+                    break;
+            }
+            if (needSwap){
+                Music temp = musicList[i];
+                musicList[i] = musicList[j];
+                musicList[j] = temp;
+            }
+        }
+    }
+}

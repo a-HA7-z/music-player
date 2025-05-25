@@ -39,4 +39,6 @@ public:
     void previous();
 
     void select(int);
+
+    void sortMusicList(int feature);
 };
