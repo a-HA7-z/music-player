@@ -6,6 +6,34 @@
 #include "PlayList.h"
 using namespace std;
 
+int signUp(vector<Member>& members) {
+    string username, password;
+
+    bool uNameIsNew = false;
+    while(!uNameIsNew) {
+        cout << "Please enter your username: ";
+        getline(cin,username);
+
+        int i;
+        for(i = 0;i < members.size();i++){
+            if(members[i].getUsername() == username){
+                cout << "This username already used.\n";
+                break;
+            }
+        }
+        if(i == members.size()) { uNameIsNew = true; }
+    }
+    cout << "Enter password: ";
+    getline(cin,password);
+
+    Member newMember(username, password);
+
+    members.push_back(newMember);
+
+    cout << "Registration successful!" << endl;
+    return members.size()-1;
+}
+
 template<typename T>
 int login(vector<T>& usersList)
 {
@@ -69,8 +97,12 @@ int main() {
     admins.push_back(admin2);
 
     PlayList allMusic("All Music");
+
     vector<PlayList> officialPlaylists;
+
     vector<Singer> singers;
+
+    vector<Member> members;
 
     int role;
     while(true){
@@ -382,6 +414,35 @@ int main() {
 
         if(role == 2) //Member
         {
+            while(true)
+            {
+                cout << "1_Sign-up\n2_Log-in\n\n9_Log-out\n0_Exit" << endl;
+                int act;
+
+                cin >> act;
+                cin.ignore();
+
+                if(act == 0) { return 0; }
+
+                if(act <= 2)
+                {
+                    if(act == 1){
+                        signUp(members);
+                    }
+
+                    if(act == 2){
+                        if(members.empty()){
+                            cout << "Please sign-up first!" << endl;
+                            break;
+                        }
+                        login(members);
+                    }
+
+                    cout << "<---WELCOME--->" << endl;
+                }
+
+                if(act == 9) { break; }
+            }
 
         }
 
