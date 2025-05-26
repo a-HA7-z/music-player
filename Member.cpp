@@ -6,7 +6,20 @@ Member::Member() : User() {}
 
 Member::Member(string name,string pass) : User(name,pass) {}
 
+bool checkMusicInList(vector<Music>& list,const Music& music){
+    for(int i = 0;i < list.size();i++){
+        if(list[i] == music){
+            return true;
+        }
+    }
+    return false;
+}
+
 void Member::addSavedMusic(const Music& music) {
+    if(checkMusicInList(savedMusic,music)){
+        cout << "This Music is available!" << endl;
+        return;
+    }
     savedMusic.push_back(music);
 }
 
@@ -20,6 +33,10 @@ void Member::deleteSavedMusic(const Music& target) {
 }
 
 void Member::addFavoriteMusic(const Music& music) {
+    if(checkMusicInList(favoriteMusic,music)){
+        cout << "This Music is available!" << endl;
+        return;
+    }
     favoriteMusic.push_back(music);
 }
 
@@ -42,6 +59,14 @@ void Member::deleteFavoritePlaylist(int index) {
 
 void Member::addPersonalPlaylist(const PlayList& playlist) {
     addPlaylist(personalPlaylists, playlist);
+}
+
+void Member::addMusicToPersonalPlaylist(Music& newMusic,int playlistIndex) {
+    if(personalPlaylists[playlistIndex].checkMusic(newMusic)){
+        cout << "This Music is available!" << endl;
+        return;
+    }
+    addMusicToPlaylist(personalPlaylists[playlistIndex],newMusic);
 }
 
 void Member::deletePersonalPlaylist(int index) {
@@ -116,4 +141,6 @@ bool Member::searchMusic(PlayList& playList, Music& target) {
     bool isHere = playList.checkMusic(target);
     return isHere;
 }
+
+
 

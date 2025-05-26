@@ -646,7 +646,7 @@ int main() {
                             cout << "\n--> All music:\n" << endl;
                             allMusic.show();
 
-                            cout << "1_Filter\n2_Search music\n3_Play music\n4_Set music to Library\n9_Back to main menu\n0_Exit" << endl;
+                            cout << "1_Filter\n2_Search music\n3_Play music\n4_Add music to Library\n9_Back to main menu\n0_Exit" << endl;
                             int act2;
 
                             cin >> act2;
@@ -705,9 +705,36 @@ int main() {
                             if(act2 == 3){
                                 playingMusic(members[memberIndex],allMusic);
                             }
-                        }
-                        if(act1 == 4){
-                            
+
+                            if(act2 == 4){
+                                Music target = createMusicFromInput();
+
+                                target.playMusic();
+
+                                cout << "1_Add to Saved Music\n2_Add to Favorite Music\n3_Add to a PersonalList" << endl;
+                                int act3;
+
+                                cin >> act3;
+                                cin.ignore();
+
+                                if(act3 == 1){
+                                    members[memberIndex].addSavedMusic(target);
+                                }
+                                if(act3 == 2){
+                                    members[memberIndex].addFavoriteMusic(target);
+                                }
+                                if(act3 == 3){
+                                    members[memberIndex].showPersonalPlaylistInfo();
+
+                                    cout << "Enter the row of target Personal Playlist" << endl;
+                                    int playlistIndex;
+
+                                    cin >> playlistIndex;
+                                    cin.ignore();
+
+                                    members[memberIndex].addMusicToPersonalPlaylist(target,playlistIndex-1);
+                                }
+                            }
                         }
                     }
 

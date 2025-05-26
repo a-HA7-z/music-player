@@ -25,6 +25,8 @@ public:
 
     void addPersonalPlaylist(const PlayList& playlist);
 
+    void addMusicToPersonalPlaylist(Music& , int);
+
     void deletePersonalPlaylist(int);
 
     void playInPlaylist(PlayList& ,int ,int );
