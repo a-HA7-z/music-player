@@ -43,4 +43,8 @@ public:
     void showBiography() const;
 
     void showHomePage();
+
+    void showAnAlbumMusics(int);
+
+    PlayList& getAnAlbum(int);
 };

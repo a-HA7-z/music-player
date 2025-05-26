@@ -87,4 +87,12 @@ int Singer::getNumberOfAlbums() const {
     return number_of_Albums;
 }
 
+void Singer::showAnAlbumMusics(int albumIndex) {
+    albums[albumIndex].show();
+}
+
+PlayList &Singer::getAnAlbum(int albumIndex) {
+    return albums[albumIndex];
+}
+
 

@@ -851,6 +851,46 @@ int main() {
 
                     if(act1 == 4) //artists Homepage
                     {
+                        while(true){
+                            cout << "--> Artists:" << endl;
+                            for(int i = 0;i < singers.size();i++){
+                                singers[i].showBiography();
+                            }
+                            cout << "\nEnter the row of target Artist to see HOMEPAGE\n" << endl;
+                            int artistIndex;
+
+                            cin >> artistIndex;
+                            cin.ignore();
+
+                            singers[artistIndex-1].showHomePage();
+
+                            cout << "1_See an Album music\n2_See another Homepage\n\n9_Back to main menu\n0_Exit\n";
+                            int act2;
+
+                            cin >> act2;
+                            cin.ignore();
+
+                            if(act2 == 0) { return 0; }
+                            if(act2 == 9) { break; }
+
+                            if(act2 == 1) {
+                                cout << "\nEnter the row of target Album to see music\n" << endl;
+                                int albumIndex;
+
+                                cin >> albumIndex;
+                                cin.ignore();
+
+                                while(true){
+                                    singers[artistIndex-1].showAnAlbumMusics(albumIndex-1);
+
+                                    int act3 = musicOperationsInPlaylist(members[memberIndex],singers[artistIndex-1].getAnAlbum(albumIndex-1));
+
+                                    if(act3 == 0){ return 0; }
+
+                                    if(act3 == 9) { break; }
+                                }
+                            }
+                        }
 
                     }
                 }
