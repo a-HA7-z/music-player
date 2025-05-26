@@ -142,5 +142,9 @@ bool Member::searchMusic(PlayList& playList, Music& target) {
     return isHere;
 }
 
+PlayList &Member::getAPersonalPlaylist(int index) {
+    return personalPlaylists[index];
+}
+
 
 

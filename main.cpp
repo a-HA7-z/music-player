@@ -129,6 +129,99 @@ void playingMusic(Member& member,PlayList& playList)
     }
 }
 
+int musicOperationsInPlaylist(Member& member,PlayList& playlist){
+    cout << "1_Filter\n2_Search music\n3_Play music\n4_Add music to Library\n9_Back to main menu\n0_Exit" << endl;
+    int act2;
+
+    cin >> act2;
+    cin.ignore();
+
+    if(act2 == 0) { return 0; }
+    if(act2 == 9) { return 9; }
+
+    if(act2 == 1){
+        cout << "1_Filter 'Alphabetic'\n2_Filter by Artist name\n3_Filter by Publish year\n4_Filter by Style\n";
+        int act3;
+
+        cin >> act3;
+        cin.ignore();
+
+        member.filterPlaylist(playlist,act3);
+    }
+
+    if(act2 == 2){
+        Music target = createMusicFromInput();
+
+        bool isHere = member.searchMusic(playlist,target);
+
+        while(!isHere){
+            cout << "This music is unavailable!\n\n1_Retry\n2_Back" << endl;
+            int act3;
+
+            cin >> act3;
+            cin.ignore();
+
+            if(act3 == 2) { break; }
+
+            if(act3 == 1){
+                target = createMusicFromInput();
+
+                isHere = member.searchMusic(playlist,target);
+            }
+        }
+
+        if(isHere){
+            target.showInfo();
+
+            cout << "\nDo you want to play music?\n1_Yes\n2_No\n";
+            int act3;
+
+            cin >> act3;
+            cin.ignore();
+
+            if(act3 == 2) { return 9; }
+
+            if(act3 == 1){
+                target.playMusic();
+            }
+        }
+    }
+    if(act2 == 3){
+        playingMusic(member,playlist);
+    }
+
+    if(act2 == 4){
+        Music target = createMusicFromInput();
+
+        target.playMusic();
+
+        cout << "1_Add to Saved Music\n2_Add to Favorite Music\n3_Add to a PersonalList" << endl;
+        int act3;
+
+        cin >> act3;
+        cin.ignore();
+
+        if(act3 == 1){
+            member.addSavedMusic(target);
+        }
+        if(act3 == 2){
+            member.addFavoriteMusic(target);
+        }
+        if(act3 == 3){
+            member.showPersonalPlaylistInfo();
+
+            cout << "Enter the row of target Personal Playlist" << endl;
+            int playlistIndex;
+
+            cin >> playlistIndex;
+            cin.ignore();
+
+            member.addMusicToPersonalPlaylist(target,playlistIndex-1);
+        }
+    }
+    return 10;
+}
+
 int main() {
     cout << "\n<==------WELCOME TO  ~H~  MUSIC PLAYER------==>\n" << endl;
 
@@ -646,101 +739,114 @@ int main() {
                             cout << "\n--> All music:\n" << endl;
                             allMusic.show();
 
-                            cout << "1_Filter\n2_Search music\n3_Play music\n4_Add music to Library\n9_Back to main menu\n0_Exit" << endl;
+                            int act2 = musicOperationsInPlaylist(members[memberIndex],allMusic);
+
+                            if(act2 == 0){ return 0; }
+
+                            if(act2 == 9) { break; }
+                        }
+                    }
+
+                    if(act1 == 3) //all playlist
+                    {
+                        while(true){
+                            cout << "--> Official Playlists:\n" << endl;
+
+                            for(int i = 0;i < officialPlaylists.size();i++){
+                                cout << i+1 << "_ ";
+                                cout << officialPlaylists[i].getName() << "   Number of Musics: "
+                                     << officialPlaylists[i].getNumberOfMusic() << endl;
+                            }
+
+                            cout << "1_See others Personal Playlists\n2_See a Playlist music\n3_Add a Playlist to Favorite Playlists\n";
+                            cout << "\n9_Back to main menu\n0_Exit" << endl;
                             int act2;
 
                             cin >> act2;
                             cin.ignore();
 
                             if(act2 == 0) { return 0; }
+
                             if(act2 == 9) { break; }
 
                             if(act2 == 1){
-                                cout << "1_Filter 'Alphabetic'\n2_Filter by Artist name\n3_Filter by Publish year\n4_Filter by Style\n";
-                                int act3;
+                                while(true){
+                                    for(int i = 0;i < members.size();i++)
+                                    {
+                                        if(i == memberIndex) { continue; }
 
-                                cin >> act3;
+                                        cout << "Member: " <<  members[i].getUsername() << endl;
+                                        members[i].showPersonalPlaylistInfo();
+                                    }
+                                    cout << "\n1_See a Playlist music\n2_Add a Playlist to Favorite Playlists\n";
+                                    cout << "\n9_Back\n0_Exit" << endl;
+                                    int act3;
+
+                                    cin >> act3;
+                                    cin.ignore();
+
+                                    if(act3 == 0) { return 0; }
+                                    if(act3 == 9) { break; }
+
+                                    if(act3 == 1){
+                                        cout << "Enter the row of target MEMBER then PLAYLIST" << endl;
+                                        int playlistIndex , targetMember;
+
+                                        cin >> targetMember >> playlistIndex;
+                                        cin.ignore();
+
+                                        while(true){
+                                            cout << "\nMember : " << members[targetMember-1].getUsername() << endl;
+
+                                            members[targetMember-1].showPersonalPlaylistMusics(playlistIndex-1);
+
+                                            int act4 = musicOperationsInPlaylist(members[memberIndex],members[targetMember-1].getAPersonalPlaylist(playlistIndex-1));
+
+                                            if(act4 == 0){ return 0; }
+
+                                            if(act4 == 9) { break; }
+                                        }
+                                    }
+
+                                    if(act3 == 2){
+                                        cout << "Enter the row of target MEMBER then PLAYLIST" << endl;
+                                        int playlistIndex , targetMember;
+
+                                        cin >> targetMember >> playlistIndex;
+                                        cin.ignore();
+
+                                        members[memberIndex].addFavoritePlaylist(members[targetMember-1].getAPersonalPlaylist(playlistIndex-1));
+                                    }
+                                }
+                            }
+                            if(act2 == 2){
+                                cout << "Enter the row of target PLAYLIST" << endl;
+                                int playlistIndex;
+
+                                cin >> playlistIndex;
                                 cin.ignore();
 
-                                members[memberIndex].filterPlaylist(allMusic,act3);
-                            }
+                                while(true){
+                                    officialPlaylists[playlistIndex-1].show();
 
-                            if(act2 == 2){
-                                Music target = createMusicFromInput();
+                                    int act4 = musicOperationsInPlaylist(members[memberIndex],officialPlaylists[playlistIndex-1]);
 
-                                bool isHere = members[memberIndex].searchMusic(allMusic,target);
+                                    if(act4 == 0){ return 0; }
 
-                                while(!isHere){
-                                    cout << "This music is unavailable!\n\n1_Retry\n2_Back" << endl;
-                                    int act3;
-
-                                    cin >> act3;
-                                    cin.ignore();
-
-                                    if(act3 == 2) { break; }
-
-                                    if(act3 == 1){
-                                        target = createMusicFromInput();
-
-                                        isHere = members[memberIndex].searchMusic(allMusic,target);
-                                    }
+                                    if(act4 == 9) { break; }
                                 }
 
-                                if(isHere){
-                                    target.showInfo();
-
-                                    cout << "\nDo you want to play music?\n1_Yes\n2_No\n";
-                                    int act3;
-
-                                    cin >> act3;
-                                    cin.ignore();
-
-                                    if(act3 == 2) { break; }
-
-                                    if(act3 == 1){
-                                        target.playMusic();
-                                    }
-                                }
                             }
                             if(act2 == 3){
-                                playingMusic(members[memberIndex],allMusic);
-                            }
+                                cout << "Enter the row of target PLAYLIST" << endl;
+                                int playlistIndex;
 
-                            if(act2 == 4){
-                                Music target = createMusicFromInput();
-
-                                target.playMusic();
-
-                                cout << "1_Add to Saved Music\n2_Add to Favorite Music\n3_Add to a PersonalList" << endl;
-                                int act3;
-
-                                cin >> act3;
+                                cin >> playlistIndex;
                                 cin.ignore();
 
-                                if(act3 == 1){
-                                    members[memberIndex].addSavedMusic(target);
-                                }
-                                if(act3 == 2){
-                                    members[memberIndex].addFavoriteMusic(target);
-                                }
-                                if(act3 == 3){
-                                    members[memberIndex].showPersonalPlaylistInfo();
-
-                                    cout << "Enter the row of target Personal Playlist" << endl;
-                                    int playlistIndex;
-
-                                    cin >> playlistIndex;
-                                    cin.ignore();
-
-                                    members[memberIndex].addMusicToPersonalPlaylist(target,playlistIndex-1);
-                                }
+                                members[memberIndex].addFavoritePlaylist(officialPlaylists[playlistIndex-1]);
                             }
                         }
-                    }
-
-                    if(act1 == 3) //all playlist
-                    {
-
                     }
 
                     if(act1 == 4) //artists Homepage

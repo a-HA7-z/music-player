@@ -37,6 +37,8 @@ public:
 
     void playSelectedMusicInPlaylist(PlayList&,int);
 
+    PlayList& getAPersonalPlaylist(int);
+
     void showSavedMusic();
 
     void showFavoriteMusic();
