@@ -36,16 +36,16 @@ void Member::addFavoritePlaylist(const PlayList& playlist) {
     addPlaylist(favoritePlaylists, playlist);
 }
 
-void Member::deleteFavoritePlaylist(const PlayList& target) {
-    deletePlaylist(favoritePlaylists, target);
+void Member::deleteFavoritePlaylist(int index) {
+    deletePlaylist(favoritePlaylists, favoritePlaylists[index]);
 }
 
 void Member::addPersonalPlaylist(const PlayList& playlist) {
     addPlaylist(personalPlaylists, playlist);
 }
 
-void Member::deletePersonalPlaylist(const PlayList& target) {
-    deletePlaylist(personalPlaylists, target);
+void Member::deletePersonalPlaylist(int index) {
+    deletePlaylist(personalPlaylists, personalPlaylists[index]);
 }
 
 void Member::playInPlaylist(PlayList &playList,int mode, int firstMusic) {

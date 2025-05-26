@@ -21,11 +21,11 @@ public:
 
     void addFavoritePlaylist(const PlayList& playlist);
 
-    void deleteFavoritePlaylist(const PlayList& target);
+    void deleteFavoritePlaylist(int);
 
     void addPersonalPlaylist(const PlayList& playlist);
 
-    void deletePersonalPlaylist(const PlayList& target);
+    void deletePersonalPlaylist(int);
 
     void playInPlaylist(PlayList& ,int ,int );
 

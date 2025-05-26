@@ -550,15 +550,15 @@ int main() {
                                         members[memberIndex].showFavoritePlaylistMusics(playlistIndex);
                                     }
 
-//                                    if(act3 == 2){
-//                                        cout << "Enter the row of target playlist to DELETE" << endl;
-//                                        int playlistIndex;
-//
-//                                        cin >> playlistIndex;
-//                                        cin.ignore();
-//
-//
-//                                    }
+                                    if(act3 == 2){
+                                        cout << "Enter the row of target playlist to DELETE" << endl;
+                                        int playlistIndex;
+
+                                        cin >> playlistIndex;
+                                        cin.ignore();
+
+                                        members[memberIndex].deleteFavoritePlaylist(playlistIndex-1);
+                                    }
                                 }
                             }
                             if(act2 == 4){
@@ -567,7 +567,7 @@ int main() {
 
                                     members[memberIndex].showPersonalPlaylistInfo();
 
-                                    cout << "1_Select a playlist to see music\n\n0_Back" << endl;
+                                    cout << "1_Select a playlist to see music\n2_Delete a Playlist from the list\n\n0_Back" << endl;
                                     int act3;
 
                                     cin >> act3;
@@ -584,9 +584,33 @@ int main() {
 
                                         members[memberIndex].showFavoritePlaylistMusics(playlistIndex);
                                     }
+
+                                    if(act3 == 2){
+                                        cout << "Enter the row of target playlist to DELETE" << endl;
+                                        int playlistIndex;
+
+                                        cin >> playlistIndex;
+                                        cin.ignore();
+
+                                        members[memberIndex].deletePersonalPlaylist(playlistIndex-1);
+                                    }
                                 }
                             }
                         }
+                    }
+                    if(act1 == 2) //all music
+                    {
+                        cout << "\n--> All music:\n" << endl;
+                    }
+
+                    if(act1 == 3) //all playlist
+                    {
+
+                    }
+
+                    if(act1 == 4) //artists Homepage
+                    {
+
                     }
                 }
             }
