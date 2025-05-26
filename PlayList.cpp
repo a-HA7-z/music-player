@@ -62,20 +62,19 @@ bool PlayList::operator==(const PlayList &other) const
     return false;
 }
 
-void PlayList::play(int mode, int startIndex)
+void PlayList::play(int mode = 1, int startIndex = 0)
 {
     playMode = mode;
     currentIndex = startIndex;
 
     musicList[currentIndex].playMusic();
-    lastIndex = currentIndex;
 }
 
 void PlayList::next()
 {
     lastIndex = currentIndex;
 
-    if (playMode == 1)
+    if (playMode == 1) //Sequential
     {
         currentIndex++;
         if (currentIndex >= musicList.size())
@@ -83,7 +82,7 @@ void PlayList::next()
             currentIndex = 0;
         }
     }
-    else if (playMode == 2)
+    else if (playMode == 2) //Random
     {
         currentIndex = rand() % musicList.size();
     }

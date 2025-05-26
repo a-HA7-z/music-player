@@ -107,3 +107,13 @@ void Member::showFavoritePlaylistMusics(int playlistIndex) {
 void Member::showPersonalPlaylistMusics(int playlistIndex) {
     personalPlaylists[playlistIndex].show();
 }
+
+void Member::filterPlaylist(PlayList& target, int feature) {
+    target.sortMusicList(feature);
+}
+
+bool Member::searchMusic(PlayList& playList, Music& target) {
+    bool isHere = playList.checkMusic(target);
+    return isHere;
+}
+

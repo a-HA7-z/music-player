@@ -42,7 +42,8 @@ string Music::getStyle() {
 }
 
 bool Music::operator==(const Music& other) const {
-    return this->name == other.name && this->singer == other.singer && this->publishYear == other.publishYear;
+    return this->name == other.name && this->singer == other.singer
+    && this->publishYear == other.publishYear && this->style == other.style;
 }
 
 void Music::showInfo() const

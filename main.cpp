@@ -86,6 +86,48 @@ Music createMusicFromInput() {
     return Music(title,artistName,year,style);
 }
 
+void playingMusic(Member& member,PlayList& playList)
+{
+    cout << "Enter the row of target Music:" << endl;
+    int index;
+
+    cin >> index;
+
+    cout << "\nEnter the mode of PLAY:\n1_Sequential\n2_Random\3Selected" << endl;
+    int mode;
+    cin >> mode;
+
+    if(mode < 1 || mode > 3) { mode = 1;}
+
+    member.playInPlaylist(playList,mode,index-1);
+
+    while(true)
+    {
+        cout << "\n1_NEXT   2_PREVIOUS\n\n0_Stop and back" << endl;
+        int act3;
+
+        cin >> act3;
+        cin.ignore();
+
+        if(act3 == 0) { break; }
+
+        if(act3 == 2) {
+            member.playPreviousInPlaylist(playList);
+        }
+
+        if(act3 == 1){
+            if(mode == 3){
+                cout << "Enter the row of target Music:" << endl;
+
+                cin >> index;
+
+                member.playSelectedMusicInPlaylist(playList,index-1);
+            }
+
+            else { member.playNextInPlaylist(playList); }
+        }
+    }
+}
 
 int main() {
     cout << "\n<==------WELCOME TO  ~H~  MUSIC PLAYER------==>\n" << endl;
@@ -600,7 +642,73 @@ int main() {
                     }
                     if(act1 == 2) //all music
                     {
-                        cout << "\n--> All music:\n" << endl;
+                        while(true){
+                            cout << "\n--> All music:\n" << endl;
+                            allMusic.show();
+
+                            cout << "1_Filter\n2_Search music\n3_Play music\n4_Set music to Library\n9_Back to main menu\n0_Exit" << endl;
+                            int act2;
+
+                            cin >> act2;
+                            cin.ignore();
+
+                            if(act2 == 0) { return 0; }
+                            if(act2 == 9) { break; }
+
+                            if(act2 == 1){
+                                cout << "1_Filter 'Alphabetic'\n2_Filter by Artist name\n3_Filter by Publish year\n4_Filter by Style\n";
+                                int act3;
+
+                                cin >> act3;
+                                cin.ignore();
+
+                                members[memberIndex].filterPlaylist(allMusic,act3);
+                            }
+
+                            if(act2 == 2){
+                                Music target = createMusicFromInput();
+
+                                bool isHere = members[memberIndex].searchMusic(allMusic,target);
+
+                                while(!isHere){
+                                    cout << "This music is unavailable!\n\n1_Retry\n2_Back" << endl;
+                                    int act3;
+
+                                    cin >> act3;
+                                    cin.ignore();
+
+                                    if(act3 == 2) { break; }
+
+                                    if(act3 == 1){
+                                        target = createMusicFromInput();
+
+                                        isHere = members[memberIndex].searchMusic(allMusic,target);
+                                    }
+                                }
+
+                                if(isHere){
+                                    target.showInfo();
+
+                                    cout << "\nDo you want to play music?\n1_Yes\n2_No\n";
+                                    int act3;
+
+                                    cin >> act3;
+                                    cin.ignore();
+
+                                    if(act3 == 2) { break; }
+
+                                    if(act3 == 1){
+                                        target.playMusic();
+                                    }
+                                }
+                            }
+                            if(act2 == 3){
+                                playingMusic(members[memberIndex],allMusic);
+                            }
+                        }
+                        if(act1 == 4){
+                            
+                        }
                     }
 
                     if(act1 == 3) //all playlist

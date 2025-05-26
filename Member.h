@@ -50,4 +50,8 @@ public:
     void playInSavedMusic(int);
 
     void playInFavoriteMusic(int);
+
+    void filterPlaylist(PlayList&,int);
+
+    bool searchMusic(PlayList&,Music&);
 };
