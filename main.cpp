@@ -512,7 +512,7 @@ int main() {
                         }
 
                         if(act2 == 4 || act2 == 5){
-                            cout << "\nChoose an Album to deleting:\n(enter the row of target Album)\n" << endl;
+                            cout << "\nChoose an Album to Changing:\n(enter the row of target Album)\n" << endl;
                             int act3;
 
                             cin >> act3;
@@ -525,7 +525,7 @@ int main() {
                             }
                             int albumIndex = act3 - 1;
 
-                            cout << "\n--> " << singers[singerIndex].getName() << "music:\n" << endl;
+                            cout << "\n--> " << singers[singerIndex].getName() << " music:\n" << endl;
                             singers[singerIndex].showMusicList();
 
                             if(act2 == 4)
@@ -537,9 +537,9 @@ int main() {
 
                             if(act2 == 5)
                             {
-                                Music newMusic = createMusicFromInput();
+                                Music targetMusic = createMusicFromInput();
 
-                                admins[index].deleteMusicFromArtistAlbum(singers[singerIndex],newMusic,albumIndex);
+                                admins[index].deleteMusicFromArtistAlbum(singers[singerIndex],targetMusic,albumIndex);
                             }
                         }
                     }
