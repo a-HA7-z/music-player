@@ -11,7 +11,7 @@ int signUp(vector<Member>& members) {
 
     bool uNameIsNew = false;
     while(!uNameIsNew) {
-        cout << "Please enter your username: ";
+        cout << "Please enter your username:" << endl;
         getline(cin,username);
 
         int i;
@@ -23,7 +23,7 @@ int signUp(vector<Member>& members) {
         }
         if(i == members.size()) { uNameIsNew = true; }
     }
-    cout << "Enter password: ";
+    cout << "Enter password:\n";
     getline(cin,password);
 
     Member newMember(username, password);
@@ -264,7 +264,7 @@ int main() {
                 if(act == 1){
                     Music newMusic = createMusicFromInput();
                     admins[index].addNewMusic(allMusic,newMusic,singers);
-                    cout << "Music " << newMusic.getName() << "successfully added :)" << endl;
+                    cout << "Music " << newMusic.getName() << " successfully added :)" << endl;
                 }
 
                 if(act == 2)
@@ -283,9 +283,7 @@ int main() {
                         cin >> act2;
                         cin.ignore();
 
-                        if(act2 == 2){
-                            break;
-                        }
+                        if(act2 == 2){ break; }
                         if(act2 == 1){
                             targetMusic = createMusicFromInput();
                             isHere = allMusic.checkMusic(targetMusic);
@@ -293,7 +291,7 @@ int main() {
                     }
                     if(isHere){
                         admins[index].deleteMusic(allMusic,targetMusic,singers);
-                        cout << "Music " << targetMusic.getName() << "successfully deleted." << endl;
+                        cout << "Music " << targetMusic.getName() << " successfully deleted." << endl;
                     }
                 }
 
@@ -566,7 +564,7 @@ int main() {
             if(act == 2){
                 if(members.empty()){
                     cout << "Please sign-up first!" << endl;
-                    break;
+                    continue;
                 }
                 memberIndex = login(members);
             }
@@ -717,7 +715,7 @@ int main() {
                                         cin >> playlistIndex;
                                         cin.ignore();
 
-                                        members[memberIndex].showFavoritePlaylistMusics(playlistIndex);
+                                        members[memberIndex].showPersonalPlaylistMusics(playlistIndex);
                                     }
 
                                     if(act3 == 2){
